@@ -1,0 +1,316 @@
+<div style=" font-family: 'Kanit', sans-serif;" class="wrapper">
+    <div class="app-sidebar" data-active-color="white" data-background-color="black" data-image="assets/img/sidebar-bg/bg.jpg">
+        <app-sidebar></app-sidebar>
+        <div class="sidebar-background"></div>
+    </div>
+    <div class="main-panel">
+        <app-navbar></app-navbar>
+        <div class="main-content">
+            <div class="content-wrapper">
+                <div class="container-fluid">
+                    <section id="icon-tabs">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                  <div class="card-header">
+                                    <h4 class="card-title" id="basic-layout-form">{{ 'registar.registerpage' | translate}}</h4>
+                                  </div>
+                                  <div class="card-body">
+                                    <div class="px-3">
+                                      <form  [formGroup]="regisform"  id="regisform" >
+                                        <div class="form-body">
+                                          <h4 class="form-section"><i class="ft-user"></i>{{ 'registar.personal' | translate}}</h4>
+                                          <div class="row">
+                                              <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <a class="profile-image">
+                                                        <img [src]="domSanitizer.bypassSecurityTrustUrl(img)" class="img-border gradient-summer width-100" alt="Card image">
+                                                    </a>
+                                                </div>
+                                              </div>
+                                              <div class="col-md-4">
+                                                <div class="form-group">
+                                                  <label>{{ 'registar.picture' | translate}}</label>
+                                                  <input type="file" (change)="handleFileSelect($event)" accept=".jpg,.jpeg" class="form-control-file" id="picture">
+                                                </div>
+                                              </div>
+                                              <div class="col-md-6">
+                                                  <div class="form-group">
+                                                    <label>{{ 'registar.resume' | translate}}</label>
+                                                    <input type="file" accept=".pdf" class="form-control-file" id="resumeFile">
+                                                  </div>
+                                                </div>
+                                            </div>
+                                          <div class="row">
+                                              <div class="col-md-2">
+                                                  <div class="form-group">
+                                                    <label for="title">{{ 'registar.title' | translate}}</label>
+                                                    <select id="title" [(ngModel)]="regisInfo.candidateTitleId" [ngModelOptions]="{standalone: true}"  name="title" class="form-control">
+                                                        <option   [value]="title.titleId" *ngFor="let title of titleList">{{title.titleName}}</option>
+                                                      </select>
+                                                  </div>
+                                                </div>
+                                            <div class="col-md-5">
+                                              <div class="form-group">
+                                                <label for="name">{{ 'registar.name' | translate}}</label>
+                                                <input type="text" id="name"  [(ngModel)]="regisInfo.candidateName" [ngModelOptions]="{standalone: true}"  class="form-control"  name="name">
+                                              </div>
+                                            </div>
+                                            <div class="col-md-5">
+                                              <div class="form-group">
+                                                <label for="lastname">{{ 'registar.lastname' | translate}}</label>
+                                                <input type="text" id="lastname" [(ngModel)]="regisInfo.candidateSurName" [ngModelOptions]="{standalone: true}"  class="form-control"  name="lastname">
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="row">
+                                            <div class="col-md-2">
+                                              <div class="form-group">
+                                                <label for="title">{{ 'registar.sexual' | translate}}</label>
+                                                <select id="title" [(ngModel)]="regisInfo.sexual" [ngModelOptions]="{standalone: true}"  name="title" class="form-control">
+                                                    <option   [value]="sexual.sexualId" *ngFor="let sexual of regisSexualList">{{sexual.sexualName}}</option>
+                                                  </select>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="row">
+                                            <div class="col-md-6">
+                                              <div class="form-group">
+                                                <label for="idcard">{{ 'registar.idcard' | translate}}</label>
+                                                <input type="text" id="idcard"  [(ngModel)]="regisInfo.candidateIdCard" [ngModelOptions]="{standalone: true}"  maxlength="13" minlength="13"  class="form-control"  name="idcard">
+                                              </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                              <div class="form-group">
+                                                  <label for="birthdate">{{ 'registar.birthdate' | translate}}</label>
+                                              <div class="input-group">
+                                                <input [(ngModel)]="birthDate"  id = "birthDate" name="birthDate" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="dd/mm/yyyy" name="dp" [minDate]="minDate" ngbDatepicker #d2="ngbDatepicker">
+                                                <div class="input-group-addon" (click)="d2.toggle()">
+                                                  <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                                               </div>
+                                               </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="row">
+                                              <div class="col-md-6">
+                                                <div class="form-group">
+                                                  <label for="phone">{{ 'registar.phone' | translate}}</label>
+                                                  <input type="text" id="phone"   [(ngModel)]="regisInfo.candidatePhone" [ngModelOptions]="{standalone: true}" class="form-control"  name="phone">
+                                                </div>
+                                              </div>
+                                              <div class="col-md-6">
+                                                <div class="form-group">
+                                                  <label for="mobile">{{ 'registar.mobile' | translate}}</label>
+                                                  <input type="text"  id="mobile" [(ngModel)]="regisInfo.candidateMobile" [ngModelOptions]="{standalone: true}" class="form-control"  name="mobile">
+                                                </div>
+                                              </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                  <div class="form-group">
+                                                    <label for="inputEmail">{{ 'registar.email' | translate}}</label>
+                                                    <input type="text" id="inputEmail" [(ngModel)]="regisInfo.candidateEmail" [ngModelOptions]="{standalone: true}" class="form-control"  name="inputEmail">
+                                                  </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                  <div class="form-group">
+                                                    <label for="province">{{ 'registar.avaliable' | translate}}</label>
+                                                    <select    [(ngModel)]="regisInfo.avaliableId" [ngModelOptions]="{standalone: true}" id="avaliableId" name="avaliableId" class="form-control">
+                                                        <option value="1">{{ 'avaliable.immediately' | translate}}</option>
+                                                        <option value="2">{{ 'avaliable.month' | translate}}</option>
+                                                    </select>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                              <div class="row">
+                                                  <div class="col-md-6">
+                                                    <div class="form-group">
+                                                      <label for="experience">{{ 'registar.experience' | translate}}</label>
+                                                      <input type="text" id="experience"  [(ngModel)]="regisInfo.experience" [ngModelOptions]="{standalone: true}" class="form-control"  name="experience">
+                                                    </div>
+                                                  </div>
+                                                  <div class="col-md-6">
+                                                    <div class="form-group">
+                                                      <label for="expectSalary">{{ 'registar.expectsalary' | translate}}</label>
+                                                      <input  type="text"  id="expectSalary" [(ngModel)]="regisInfo.expectSalary" [ngModelOptions]="{standalone: true}"  class="form-control"  name="expectSalary">
+                                                    </div>
+                                                  </div>
+                                                </div>
+
+                                          <h4 class="form-section"><i class="ft-map-pin"></i>{{ 'registar.addressInfo' | translate}}</h4>
+                          
+                                          <div class="form-group">
+                                            <label  for="addressno">{{ 'registar.addressno' | translate}}</label>
+                                            <input [(ngModel)]="regisInfo.candidateAddressNo" [ngModelOptions]="{standalone: true}" type="text" id="companyName" class="form-control"  name="addressno">
+                                          </div>
+                          
+                                          <div class="row">
+                                            <div class="col-md-6">
+                                              <div class="form-group">
+                                                <label for="province">{{ 'registar.province' | translate}}</label>
+                                                <select   (change)="getDistrict()" [(ngModel)]="regisInfo.candidateProvince" [ngModelOptions]="{standalone: true}" id="province" name="province" class="form-control">
+                                                    <option [value]="province.provinceId" *ngFor="let province of provinceList">{{province.provinceName}}</option>
+                                                </select>
+                                              </div>
+                                            </div>
+                          
+                                            <div class="col-md-6">
+                                              <div class="form-group">
+                                                <label for="district">{{ 'registar.district' | translate}}</label>
+                                                <select (change)="getSubDistrict()" [(ngModel)]="regisInfo.candidateDistrict" [ngModelOptions]="{standalone: true}"  name="district" class="form-control">
+                                                    <option  [value]="district.districtId" *ngFor="let district of districtList">{{district.districtName}}</option>
+                                                </select>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="row">
+                                              <div class="col-md-6">
+                                                <div class="form-group">
+                                                  <label for="subdistrict">{{ 'registar.subdistrict' | translate}}</label>
+                                                  <select    name="subdistrict" [(ngModel)]="regisInfo.candidateSubDistrict" [ngModelOptions]="{standalone: true}"  class="form-control">
+                                                      <option  [value]="subDistrict.subDistrictId" *ngFor="let subDistrict of subDistrictList">{{subDistrict.subDistrictName}}</option>
+                                                  </select>
+                                                </div>
+                                              </div>
+                            
+                                              <div class="col-md-6">
+                                                <div class="form-group">
+                                                  <label for="postcode">{{ 'registar.postcode' | translate}}</label>
+                                                  <input type="text"  [(ngModel)]="regisInfo.candidatePostalCode" [ngModelOptions]="{standalone: true}"  id="postcode" class="form-control"  name="postcode">
+                                                </div>
+                                              </div>
+                                            </div>
+                                        </div>
+                                        <h4 class="form-section"><i class="ft-book"></i>{{ 'registar.educationinfo' | translate}}</h4>
+                                              <div class="row">
+                                                <div class="col-md-6">
+                                                  <div class="form-group">
+                                                    <label for="educationtype">{{ 'registar.educationtype' | translate}}</label>
+                                                    <select  id="educationtype" [(ngModel)]="regisInfo.education.educationType" [ngModelOptions]="{standalone: true}" name="educationtype" class="form-control">
+                                                        <option  [value]="educationType.educationId" *ngFor="let educationType of educationTypeList">{{educationType.educationName}}</option>
+                                                    </select>
+                                                  </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                  <div class="form-group">
+                                                    <label for="educationFaculty">{{ 'registar.educationFaculty' | translate}}</label>
+                                                    <input type="text" [(ngModel)]="regisInfo.education.educationFaculty" [ngModelOptions]="{standalone: true}" id="educationFaculty" class="form-control"  name="educationFaculty">
+                                                  </div>
+                                                </div>
+                                              </div>
+                                              <div class="row">
+                                                  <div class="col-md-6">
+                                                    <div class="form-group">
+                                                      <label for="educationBranch">{{ 'registar.educationBranch' | translate}}</label>
+                                                      <input type="text" [(ngModel)]="regisInfo.education.educationBranch" [ngModelOptions]="{standalone: true}"  class="form-control"  name="educationBranch">
+                                                    </div>
+                                                  </div>
+                                                  <div class="col-md-6">
+                                                    <div class="form-group">
+                                                      <label for="educationInstitute">{{ 'registar.educationInstitute' | translate}}</label>
+                                                      <input type="text"  [(ngModel)]="regisInfo.education.educationInstitute" [ngModelOptions]="{standalone: true}"  id="educationInstitute" class="form-control"  name="educationInstitute">
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                      <div class="form-group">
+                                                        <label for="educationGpa">{{ 'registar.educationGpa' | translate}}</label>
+                                                        <input type="text" id="educationGpa" [(ngModel)]="regisInfo.education.educationGpa" [ngModelOptions]="{standalone: true}"   maxlength="4" class="form-control"  name="educationGpa">
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                      <div class="form-group">
+                                                        <label for="educationStart">{{ 'registar.educationStart' | translate}}</label>
+                                                        <input type="text" id="educationStart"  [(ngModel)]="regisInfo.education.educationStart" [ngModelOptions]="{standalone: true}" maxlength="4" class="form-control"  name="compeducationStartany">
+                                                      </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                      <div class="form-group">
+                                                        <label for="educationEnd">{{ 'registar.educationEnd' | translate}}</label>
+                                                        <input type="text" id="educationEnd" [(ngModel)]="regisInfo.education.educationEnd" [ngModelOptions]="{standalone: true}" maxlength="4" class="form-control"  name="educationEnd">
+                                                      </div>
+                                                    </div>
+                                                  </div>
+
+                                                  <h4 class="form-section"><i class="ft-book"></i>{{ 'registar.workinginfo' | translate}}</h4>
+                                                  <div  align="left">
+                                                      <button type="button" class="btn btn-raised btn-raised btn-warning mr-1" (click)="addSite()">
+                                                        <i class="ft-x"></i> {{ 'button.add' | translate}}
+                                                      </button>
+                                                      <button type="button" class="btn btn-raised btn-raised btn-warning mr-1" (click)="remove()">
+                                                          <i class="ft-x"></i> {{ 'button.remove' | translate}}
+                                                        </button>
+                                                    </div> 
+                                                  <fieldset id="workingfield">
+                                                    <div class="row">
+                                                        <div class="col-md-2">
+                                                          <div class="form-group">
+                                                            <label for="projectinput5">{{ 'registar.workingjobtype' | translate}}</label>
+                                                            <input type="text" id="jobType" class="form-control"  name="jobType">
+                                                          </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                          <div class="form-group">
+                                                            <label for="projectinput6">{{ 'registar.workingcompany' | translate}}</label>
+                                                            <input type="text" id="companyName" class="form-control"  name="companyName">
+                                                          </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                              <label for="projectinput6">{{ 'registar.workingposition' | translate}}</label>
+                                                              <input type="text" id="position" class="form-control"  name="position">
+                                                            </div>
+                                                          </div>
+                                                      </div>
+                                                      <div class="row">
+                                                          <div class="col-md-2">
+                                                            <div class="form-group">
+                                                              <label for="projectinput5">{{ 'registar.workingstartYear' | translate}}</label>
+                                                              <input type="text" id="startYear" maxlength="4" class="form-control"  name="startYear">
+                                                            </div>
+                                                          </div>
+                                                          <div class="col-md-4">
+                                                            <div class="form-group">
+                                                              <label for="projectinput6">{{ 'registar.workingendYear' | translate}}</label>
+                                                              <input type="text" id="endYear" maxlength="4" class="form-control"  name="endYear">
+                                                            </div>
+                                                          </div>
+                                                          <div class="col-md-4">
+                                                              <div class="form-group">
+                                                                <label for="projectinput6">{{ 'registar.workingsalary' | translate}}</label>
+                                                                <input type="text" id="salary" class="form-control"  name="salary">
+                                                              </div>
+                                                            </div>
+                                                      </div>
+                                                  </fieldset>
+                                            <div class="form-actions">
+                                                <div class="col-md-2">
+                                                </div>
+                                                <div class="col-md-8">
+                                                  <button type="button" class="btn btn-raised btn-raised btn-warning mr-1">
+                                                    <i class="ft-x"></i> {{ 'button.cancel' | translate}}
+                                                  </button>
+                                                  <button type="button" class="btn btn-raised btn-raised btn-primary" (click)="save()">
+                                                    <i class="fa fa-check-square-o"></i> {{ 'button.save' | translate}}
+                                                  </button>
+                                                </div>
+                                            </div>                          
+                                      </form>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                        </div>
+                      </section>
+                </div>
+            </div>
+        </div>
+        <app-footer></app-footer>
+    </div>
+</div><!-- Wizard Starts -->
+
+<!-- Wizard Ends -->

@@ -1,0 +1,30 @@
+export const REGIS_FORM = 
+    {
+        candidateTitleId  :  "",
+        candidateName   :  "",
+        candidateSurName   :  "",
+        candidateIdCard   :  "",
+        candidateBirthDate  :  "",
+        candidateAddressNo  :  "",
+        candidateDistrict  :  "",
+        candidateSubDistrict  :  "",
+        candidateProvince  :  "",
+        candidatePostalCode  :  "",
+        expectSalary  :  "",
+        candidatePicture  :  "",
+        candidateEmail  :  "",
+        candidatePhone  :  "",
+        candidateMobile  :  "",
+        experience  :  "",
+        avaliableId  :  "",
+        education  :  {
+            educationType : "",
+            educationFaculty : "",
+            educationBranch : "",
+            educationInstitute : "",
+            educationStart : "",
+            educationEnd : "",
+            educationGpa : "",
+        },
+        jobDto  :  []
+    }
